@@ -24,3 +24,5 @@ yarn-error.log*
 yarn111.lock
 .gitignore
 yarn.lock
+yarn.lock
+.gitignore
