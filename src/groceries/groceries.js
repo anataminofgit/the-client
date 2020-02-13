@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import { connect } from 'react-redux'
-//import  {signIn} from '../store/action/authActions'
+import  {getProducts} from '../store/action/groceriesActions'
 //import { Redirect } from 'react-router-dom'
 //import './signin.css'
 
@@ -12,25 +12,10 @@ class Groceries extends Component {
         super(props);
 
         this.state = {
-
         selectedId : null   , 
-        products : [{
-            id: "1234567890",
-            productName: "banana",
-            category: "fruits",
-            manufecture: "katif",
-            price: 6 ,
-            size: "kgrm"
-        },
-        {
-            id: "234567891",
-            productName: "oreang",
-            category: "fruits",
-            manufecture: "katif",
-            price: 3 ,
-            size: "kgrm"
-        }]
+        
         }
+        this.props.getProducts(this.props.auth.userUuid)
 
     }
     
@@ -73,12 +58,14 @@ class Groceries extends Component {
         return {color : (id === this.state.selectedId) ? "blue " : "black" } 
     }
 
-    renderBody(){                                          
-        return this.state.products.map((product)=>{  
+    renderBody(){       
+        const products = this.props.groceries.products ; 
+
+        return products.map((product)=>{  
             return(   
                 <tr key={"tr-" + product.id.toString()} onClick={()=>this.handleClick(product)} >
                     <td style={this.renderColorId(product.id)}> {product.id}</td>
-                    <td style={this.renderColorId(product.id)}> {product.productName}</td>
+                    <td style={this.renderColorId(product.id)}> {product.Product_name}</td>
                     <td style={this.renderColorId(product.id)}> {product.category}</td>
                     <td style={this.renderColorId(product.id)}> {product.manufecture}</td>
                     <td style={this.renderColorId(product.id)}> {product.price}</td>
@@ -114,15 +101,16 @@ class Groceries extends Component {
 
  const mapStateToProps = (state) => {
     return {
-      auth: state.auth
+      auth: state.auth,
+      groceries : state.groceries
     }
   } 
 
 
-/* const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch)=> {
     return {
-      signIn: (user) => dispatch(signIn(user))
+      getProducts: (user) => dispatch(getProducts(user))
     }
-  }   */
+  }   
 
-export default connect(mapStateToProps)(Groceries)
+export default connect(mapStateToProps, mapDispatchToProps)(Groceries)

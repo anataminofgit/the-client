@@ -1,10 +1,10 @@
 import authReducer from './authReducer'
-import accountReducer from './accountReducer'
+import groceriesReducer from './groceriesReducer'
 import {combineReducers} from 'redux'
 
 const rootReducer =  combineReducers({
     auth :authReducer,
-    account: accountReducer
+    groceries: groceriesReducer
 })
 
 export default rootReducer

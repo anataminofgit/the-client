@@ -11,7 +11,7 @@ import {SIGNUP_SUCCESS,
   message: "" }  
 
 const authReducer = (state = initState, action) =>{
-  console.log("authReducer", state, action);
+  //console.log("authReducer", state, action);
      switch(action.type){
         case LOGIN_ERROR:
           console.log('login error');
