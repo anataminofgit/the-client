@@ -8,7 +8,7 @@ const initState = {products : [],
 
 
 const groceriesReducer = (state = initState, action) =>{
-    console.log("groceriesReducer", state, action);
+   // console.log("groceriesReducer", state, action);
     switch(action.type){
         case GET_PRODUCTS_SUCCESS:
           console.log('GET_PRODUCTS_SUCCESS');

@@ -5,7 +5,7 @@ import axios from "axios"
 export  const  getProducts =  (uuid) =>{
    return (dispatch, getState) => {
     axios.get(`http://localhost:9000/products/?token=${uuid}`).then((data)=>{
-       console.log(data);
+       //console.log(data);
          if (data.data.success === true){
             dispatch({ type: GET_PRODUCTS_SUCCESS, products : [...data.data.products] });
          }

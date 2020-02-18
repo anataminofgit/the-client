@@ -4,7 +4,8 @@ import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import { connect } from 'react-redux'
 import  {getProducts} from '../store/action/groceriesActions'
-//import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 //import './signin.css'
 
 class Groceries extends Component {
@@ -19,18 +20,6 @@ class Groceries extends Component {
 
     }
     
-
-/*     changeHandler = (event) => {
-        this.setState({[event.target.id]: event.target.value});
-    }
-          
-    handleSubmit = (event) =>{
-        event.preventDefault();
-        this.props.signIn(this.state)
-        this.setState( {email:"",
-                        password:""})
-    }  */
-
 
     
     handleClick = (event) =>{
@@ -75,11 +64,18 @@ class Groceries extends Component {
             })
         }   
 
+    renderDeleteButton(){
+    // let value = this.state.selectedId ===  null
+     //console.log ("value",value, this.state.selectedId)
+        return (this.state.selectedId ===  null) ? <Button disabled >Delete </Button> : <Button>Delete </Button> 
+    }
+
     render() {
-/*       if (this.props.auth.userUuid !== ""){
-          return <Redirect to='/' />  
-      }   */
-      return (
+    if (this.props.auth.userUuid === ""){
+          return <Redirect to='/login' />  
+    }
+    else   
+        return (
          <Container>
             <Table striped bordered hover>
                 <thead id="theadId">
@@ -91,8 +87,9 @@ class Groceries extends Component {
                 {this.renderBody()}
                 </tbody>
             </Table>
+                <Button >Add...</Button>
+                {this.renderDeleteButton()} 
         </Container>
-
         )
     }
 }

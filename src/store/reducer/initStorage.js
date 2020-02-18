@@ -18,7 +18,6 @@ export const initStore=()=>{
 
     store.subscribe(throttle(() => {
       let state = store.getState()
-      console.log("store.subscribe",state)
       saveState({
         auth: state.auth,
       })
